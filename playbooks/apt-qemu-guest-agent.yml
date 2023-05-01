@@ -1,0 +1,15 @@
+---
+- name: Install and start qemu-guest-agent
+  hosts: ubuntuvms:!cloud
+  tasks:
+    - name: apt install
+      apt:
+        name: qemu-guest-agent
+        state: present
+        force_apt_get: yes
+        update_cache: yes
+    - name: systemctl start
+      systemd:
+        name: qemu-guest-agent
+        state: started
+        enabled: yes

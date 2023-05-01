@@ -1,0 +1,21 @@
+---
+- name: Deploy netsec sysctl
+  hosts:
+    - ubuntuvms:!cloud
+    - ubuntucts
+  tasks:
+    - name: Install network hardening sysctl values
+      copy:
+        dest: /etc/sysctl.d/99-netsec.conf
+        owner: root
+        group: root
+        content: |
+          net.ipv4.conf.all.send_redirects=0
+          net.ipv4.conf.default.send_redirects=0
+          net.ipv4.conf.all.accept_redirects=0
+          net.ipv4.conf.default.accept_redirects=0
+          net.ipv4.conf.all.log_martians=1
+          net.ipv4.conf.default.log_martians=1
+          net.ipv4.icmp_ignore_bogus_error_responses=1
+    - name: Apply sysctl
+      shell: sysctl -p

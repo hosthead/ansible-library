@@ -1,0 +1,15 @@
+[all:vars]
+ansible_become=yes
+ansible_become_method=sudo
+
+[ubuntucts]
+ubuntuct1
+ubuntuct2
+
+[ubuntuvms]
+ubuntuvm1
+ubuntuvm2
+ubuntuvm3
+
+[cloud]
+ubuntuvm3

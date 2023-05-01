@@ -1,0 +1,13 @@
+---
+- name: Deploy apt proxy config
+  hosts:
+    - ubuntuvms:!cloud
+    - ubuntucts
+  tasks:
+    - name: Install apt proxy config
+      copy:
+        dest: /etc/apt/apt.conf.d/99-proxy.conf
+        owner: root
+        group: root
+        content: |
+          Acquire::http::proxy "http://192.0.2.100:3142";

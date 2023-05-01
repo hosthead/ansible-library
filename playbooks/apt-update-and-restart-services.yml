@@ -1,0 +1,26 @@
+---
+- name: Update all packages
+  hosts:
+    - ubuntuvms
+    - ubuntucts
+  serial:
+    - 1
+  tasks:
+    - name: apt update
+      apt:
+        upgrade: dist
+        force_apt_get: yes
+        update_cache: yes
+        autoremove: yes
+- name: Restart services
+  hosts:
+    - ubuntuvms
+    - ubuntucts
+    - clientlake-apt
+  serial:
+    - 1
+  tasks:
+    - name: Restart services automatically
+      shell:
+        cmd: needrestart -r a
+      ignore_errors: true
