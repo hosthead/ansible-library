@@ -6,6 +6,12 @@
   serial:
     - 1
   tasks:
+    - name: apt install needrestart
+      apt:
+        name: needrestart
+        state: present
+        force_apt_get: yes
+        update_cache: yes
     - name: apt update
       apt:
         upgrade: dist
