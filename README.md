@@ -18,6 +18,10 @@ Set up an ansible user and create an SSH key for the user.
     sudo -u ansible chmod 700 /home/ansible/.ssh
     sudo -u ansible chmod 600 /home/ansible/.ssh/id_rsa
 
+Retreive the ansible user public key for later use.
+
+    sudo -u ansible cat /home/ansible/.ssh/id_rsa.pub
+
 ## Setting up your ansible hosts file
 
 Set up the ansible hosts file to reflect your infrastructure. Your day will be nicer if you have all of these in DNS.
@@ -49,22 +53,39 @@ This allows you to make selections such as ubuntuvms:!cloud to select all Ubuntu
 
 ## Setting up your remote hosts
 
-setup.sh allows you to install your ansible key to remote hosts that don't have another method of receiving the keys. Usage is ./setup.sh user@host -- this user must have sudo privilges without requiring a password to execute this script.
-
-Be sure to edit remote.sh to include your ansible key.
+Configure remote.sh to include your ansible key.
 
     sed -i 's/^ANSIBLE_SSH_KEY=$/ANSIBLE_SSH_KEY=your ssh key here/' remote.sh
 
+Run setup.sh to configure the ansible user and add the ansible public key to the remote.
+
+    ./setup.sh user@host
+
+Example:
+
+    ./setup.sh hostheaduser@example.org
+
+The user must have sudo privilges without requiring a password to execute this script.
+
 ## Running the playbooks
 
-To run a playbook, execute
+To run a playbook, execute the following on the ansible control node as the ansible user.
 
+    sudo su - ansible
     ansible-playbook -i path/to/hosts path/to/playbook.yml
 
 For example
 
+    sudo su - ansible
     ansible-playbook -i hosts playbooks/apt-update-and-restart-services.yml
 
-You may elect to put this into a cron job
+You may elect to put this into a cron job for the ansible user
 
+    sudo crontab -eu ansible
+
+If you cannot navigate vi, prepend the command (but after the sudo) with EDITOR=nano
+
+    sudo EDITOR=nano crontab -eu ansible
+
+Add the following contents
     0 3 * * * cd /home/ansible && ansible-playbook -i hosts playbooks/apt-update-and-restart-services.yml > logs/apt-update-and-restart-services.log
