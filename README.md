@@ -88,4 +88,5 @@ If you cannot navigate vi, prepend the command (but after the sudo) with EDITOR=
     sudo EDITOR=nano crontab -eu ansible
 
 Add the following contents
+
     0 3 * * * cd /home/ansible && ansible-playbook -i hosts playbooks/apt-update-and-restart-services.yml > logs/apt-update-and-restart-services.log
