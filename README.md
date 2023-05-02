@@ -6,6 +6,10 @@ These playbooks are a guideline for building your own automation. You may not el
 
 You should have a VM or container for ansible from which to execute these playbooks in an automated fashion.
 
+Install ansible. Recent versions of Ubuntu contain a new enough version for these playbooks.
+
+    sudo apt install ansible
+
 Set up an ansible user and create an SSH key for the user.
 
     sudo useradd -m -s /bin/bash ansible
