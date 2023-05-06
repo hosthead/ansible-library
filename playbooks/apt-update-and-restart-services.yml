@@ -22,7 +22,6 @@
   hosts:
     - ubuntuvms
     - ubuntucts
-    - clientlake-apt
   serial:
     - 1
   tasks:
