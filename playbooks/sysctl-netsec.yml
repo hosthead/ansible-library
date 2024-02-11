@@ -1,8 +1,10 @@
 ---
 - name: Deploy netsec sysctl
   hosts:
-    - ubuntuvms:!cloud
-    - ubuntucts
+    - ubuntu
+    - centos
+  become: true
+  ignore_unreachable: true
   tasks:
     - name: Install network hardening sysctl values
       copy:
