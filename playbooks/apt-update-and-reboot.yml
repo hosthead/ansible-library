@@ -1,8 +1,9 @@
 ---
 - name: Update all packages
   hosts:
-    - ubuntuvms
-    - ubuntucts
+    - ubuntu
+  become: true
+  ignore_unreachable: true
   serial:
     - 1
   tasks:

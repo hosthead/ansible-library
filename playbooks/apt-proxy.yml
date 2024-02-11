@@ -1,8 +1,9 @@
 ---
 - name: Deploy apt proxy config
   hosts:
-    - ubuntuvms:!cloud
-    - ubuntucts
+    - prem_ubuntu
+  become: true
+  ignore_unreachable: true
   tasks:
     - name: Install apt proxy config
       copy:

@@ -1,18 +1,188 @@
 [all:vars]
 ansible_become_method=sudo
 
-[ubuntucts]
-ubuntuct1
-ubuntuct2
-ubuntuct3
+### START Ubuntu Host Definitions ###
 
-[ubuntuvms]
-ubuntuvm1
-ubuntuvm2
-ubuntuvm3
+[prem_ct_ubuntu]
+#ubuntuct1
 
-[cloudvms]
-ubuntuvm3
+[prem_vm_ubuntu]
+#ubuntuvm1
 
-[cloudcts]
-ubuntuct3
+[cloud_ct_ubuntu]
+#ubuntuct2
+
+[cloud_vm_ubuntu]
+#ubuntuvm2
+
+### END Ubuntu Host Definitons ###
+
+
+### START CentOS 7 Host Definitions ###
+
+[prem_ct_centos7]
+#centos7ct1
+
+[prem_vm_centos7]
+#centos7vm1
+
+[cloud_ct_centos7]
+#centos7ct2
+
+[cloud_vm_centos7]
+#centos7vm2
+
+### END Ubuntu Host Definitons ###
+
+
+### START CentOS 8 Host Definitions ###
+
+[prem_ct_centos8]
+#centos8ct1
+
+[prem_vm_centos8]
+#centos8vm1
+
+[cloud_ct_centos8]
+#centos8ct2
+
+[cloud_vm_centos8]
+#centos8vm2
+
+### END Ubuntu Host Definitons ###
+
+
+
+### START CentOS 9 Host Definitions ###
+
+[prem_ct_centos9]
+#centos9ct1
+
+[prem_vm_centos9]
+#centos9vm1
+
+[cloud_ct_centos9]
+#centos9ct2
+
+[cloud_vm_centos9]
+#centos9vm2
+
+### END Ubuntu Host Definitons ###
+
+
+### START Groups Ubuntu ###
+# do not add individual hosts here
+# :children tag implies groups are listed, not hosts
+
+[prem_ubuntu:children]
+prem_ct_ubuntu
+prem_vm_ubuntu
+
+[cloud_ubuntu:children]
+cloud_ct_ubuntu
+cloud_vm_ubuntu
+
+[ct_ubuntu:children]
+prem_ct_ubuntu
+cloud_ct_ubuntu
+
+[vm_ubuntu:children]
+prem_vm_ubuntu
+cloud_vm_ubuntu
+
+[ubuntu:children]
+prem_ct_ubuntu
+prem_vm_ubuntu
+cloud_ct_ubuntu
+cloud_vm_ubuntu
+
+### END Groups Ubuntu ###
+
+
+### START Groups CentOS ###
+# do not add individual hosts here
+# :children tag implies groups are listed, not hosts
+
+
+## CentOS 7 ##
+
+[prem_centos7:children]
+prem_ct_centos7
+prem_vm_centos7
+
+[cloud_centos7:children]
+cloud_ct_centos7
+cloud_vm_centos7
+
+[ct_centos7:children]
+prem_ct_centos7
+cloud_ct_centos7
+
+[vm_centos7:children]
+prem_vm_centos7
+cloud_vm_centos7
+
+[centos7:children]
+prem_ct_centos7
+prem_vm_centos7
+cloud_ct_centos7
+cloud_vm_centos7
+
+## CentOS 8 ##
+
+[prem_centos8:children]
+prem_ct_centos8
+prem_vm_centos8
+
+[cloud_centos8:children]
+cloud_ct_centos8
+cloud_vm_centos8
+
+[ct_centos8:children]
+prem_ct_centos8
+cloud_ct_centos8
+
+[vm_centos8:children]
+prem_vm_centos8
+cloud_vm_centos8
+
+[centos8:children]
+prem_ct_centos8
+prem_vm_centos8
+cloud_ct_centos8
+cloud_vm_centos8
+
+## CentOS 9 ##
+
+[prem_centos9:children]
+prem_ct_centos9
+prem_vm_centos9
+
+[cloud_centos9:children]
+cloud_ct_centos9
+cloud_vm_centos9
+
+[ct_centos9:children]
+prem_ct_centos9
+cloud_ct_centos9
+
+[vm_centos9:children]
+prem_vm_centos9
+cloud_vm_centos9
+
+[centos9:children]
+prem_ct_centos9
+prem_vm_centos9
+cloud_ct_centos9
+cloud_vm_centos9
+
+## CentOS ALL ##
+
+[centos:children]
+centos7
+centos8
+centos9
+
+### END Groups CentOS ###
+
+

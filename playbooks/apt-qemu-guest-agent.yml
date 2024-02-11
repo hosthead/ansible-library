@@ -1,6 +1,8 @@
 ---
 - name: Install and start qemu-guest-agent
-  hosts: ubuntuvms:!cloud
+  hosts: prem_vm_ubuntu
+  become: true
+  ignore_unreachable: true
   tasks:
     - name: apt install
       apt:
