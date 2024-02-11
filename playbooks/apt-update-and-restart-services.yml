@@ -21,8 +21,9 @@
         autoremove: yes
 - name: Restart services
   hosts:
-    - ubuntuvms
-    - ubuntucts
+    - ubuntu
+  become: true
+  ignore_unreachable: true
   serial:
     - 1
   tasks:
