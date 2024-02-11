@@ -19,14 +19,6 @@
         force_apt_get: yes
         update_cache: yes
         autoremove: yes
-- name: Restart services
-  hosts:
-    - ubuntu
-  become: true
-  ignore_unreachable: true
-  serial:
-    - 1
-  tasks:
     - name: Restart services automatically
       shell:
         cmd: needrestart -r a
