@@ -32,7 +32,7 @@ ansible_become_method=sudo
 [cloud_vm_centos7]
 #centos7vm2
 
-### END Ubuntu Host Definitons ###
+### END CentOS 7 Host Definitons ###
 
 
 ### START CentOS 8 Host Definitions ###
@@ -49,7 +49,7 @@ ansible_become_method=sudo
 [cloud_vm_centos8]
 #centos8vm2
 
-### END Ubuntu Host Definitons ###
+### END CentOS 8 Host Definitons ###
 
 
 
@@ -67,7 +67,7 @@ ansible_become_method=sudo
 [cloud_vm_centos9]
 #centos9vm2
 
-### END Ubuntu Host Definitons ###
+### END CentOS 9 Host Definitons ###
 
 
 ### START Groups Ubuntu ###
