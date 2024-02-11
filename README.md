@@ -1,6 +1,6 @@
 # Using these playbooks
 
-These playbooks are a guideline for building your own automation. You may not elect to run all the playbooks here. You mmay elect to enhance these or take different opinions on how to do things. Contributions are appreciated for common setups.
+These playbooks are a guideline for building your own automation. You may elect to not run some of the playbooks here. You may elect to enhance these or take different opinions on how to do things. Contributions are appreciated for common setups.
 
 ## Setting up your ansible control node
 
