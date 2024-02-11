@@ -28,28 +28,37 @@ Set up the ansible hosts file to reflect your infrastructure. Your day will be n
 
 Put each piece of infra in the relevant section. 
 
-* VMs
-* Containers
-* Cloud
-* Baremetal
+* Ubuntu
+  * prem_ct_ubuntu: On Premise Ubuntu Containers
+  * prem_vm_ubuntu: On Premise Ubuntu VMs
+  * cloud_ct_ubuntu: Cloud Ubuntu Containers
+  * cloud_vm_ubuntu: Cloud Ubuntu VMs
+* CentOS 7,8,9 (X for version)
+  * prem_ct_centosX: On Premise CentOS X Containers
+  * prem_vm_centosX: On Premise CentOS X VMs
+  * cloud_ct_centosX: Cloud CentOS X Containers
+  * cloud_vm_centosX: Cloud CentOS X VMs
 
-A host can appear in one or more sections. eg a host may be a VM in the cloud.
+Extend this list to meet your needs. The provided list makes some assumptions about what your infrastructure might look like.
+
+When defining your own groups, note that a host can appear in one or more groups.
 
 eg.
 
-    [ubuntucts]
-    ubuntuct1
-    ubuntuct2
+    [prem_vm_ubuntu]
+    myserver1
+    myserver2
+    myserver3
     
-    [ubuntuvms]
-    ubuntuvm1
-    ubuntuvm2
-    ubuntuvm3
-    
-    [cloud]
-    ubuntuvm3
+    # New group, containing Ubuntu VMs on VMWare.
+    [vmware_ubuntu]
+    myserver3
 
-This allows you to make selections such as ubuntuvms:!cloud to select all Ubuntu VMs not in the cloud.
+You can select from the hosts file using a group name or a combination of selectors, eg:
+
+    prem_vm_ubuntu:!vmware_ubuntu
+
+to select all prem_vm_ubuntu servers, EXCLUDING those in vmware_ubuntu.
 
 ## Setting up your remote hosts
 
